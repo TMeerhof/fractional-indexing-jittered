@@ -1,0 +1,48 @@
+.list {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+nav {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+
+.page {
+  margin: auto;
+  max-width: 1000px;
+  display: flex;
+
+  .syncing-indicator {
+    align-self: center;
+    padding: 10px;
+  }
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+  }
+}
+
+.card {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 250px;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #545252;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #ccc;
+
+  .name {
+    margin-right: auto;
+  }
+}
+
+.introduction {
+  max-width: 1000px;
+  padding: 20px;
+  margin: 0 auto;
+}
