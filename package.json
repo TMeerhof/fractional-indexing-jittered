@@ -1,9 +1,9 @@
 {
   "name": "fractional-indexing-jittered",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Fractional index library with jittering and generator",
   "type": "module",
-  "main": "lib/cjs/index.js",
+  "main": "lib/cjs/index.cjs",
   "homepage": "https://github.com/TMeerhof/fractional-indexing-jittered",
   "repository": {
     "url": "https://github.com/TMeerhof/fractional-indexing-jittered",
@@ -13,7 +13,7 @@
     "clean": "rm -rf ./lib",
     "build": "npm run clean && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc -p ./tsconfig.esm.json && mv lib/esm/index.js lib/esm/index.mjs",
-    "build:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:cjs": "tsc -p ./tsconfig.cjs.json && mv lib/cjs/index.js lib/cjs/index.cjs",
     "prepack": "npm run build",
     "test": "jest",
     "test:watch": "jest --watch"
@@ -21,7 +21,7 @@
   "exports": {
     ".": {
       "import": "./lib/esm/index.mjs",
-      "require": "./lib/cjs/index.js"
+      "require": "./lib/cjs/index.cjs"
     }
   },
   "author": "https://github.com/TMeerhof",
