@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { List } from "../components/List";
-import { Generator } from "fractional-indexing-jittered";
+import{ IndexGenerator } from "fractional-indexing-jittered";
 import { Button } from "../components/Button";
 import { ButtonBar } from "../components/ButtonBar";
 import { Card } from "../components/Card";
@@ -36,9 +36,9 @@ export const InterleavingWithoutJitter = () => {
   const [syncing, setSyncing] = useState(false);
 
   const orderKeysLeft = left.map((item) => item.order);
-  const leftGenerator = new Generator(orderKeysLeft, { useJitter: false });
+  const leftGenerator = new IndexGenerator(orderKeysLeft, { useJitter: false });
   const orderKeysRight = right.map((item) => item.order);
-  const rightGenerator = new Generator(orderKeysRight, { useJitter: false });
+  const rightGenerator = new IndexGenerator(orderKeysRight, { useJitter: false });
   const activeTimeouts = useRef(0);
 
   const addToLeft = (newObjects: MyObject[]) => {
@@ -97,7 +97,7 @@ export const InterleavingWithoutJitter = () => {
 
 interface InterleavingListProps {
   user: string;
-  generator: Generator;
+  generator: IndexGenerator;
   list: MyObject[];
   addObjects: (list: MyObject[]) => void;
 }

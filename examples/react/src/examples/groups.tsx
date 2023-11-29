@@ -1,5 +1,5 @@
-import { Generator } from "fractional-indexing-jittered";
-import { useEffect, useState } from "react";
+import{ IndexGenerator } from "fractional-indexing-jittered";
+import { useState } from "react";
 import { Button } from "../components/Button";
 import { uid } from "../utils/uid";
 import { Card } from "../components/Card";
@@ -44,7 +44,7 @@ export const GroupList = () => {
   const [list, setList] = useState<MyObject[]>(initialItems);
   const orderKeys = list.map((item) => item.order);
   // creating a new generator on every render is not a big deal for simple lists
-  const generator = new Generator(orderKeys, { groupIdLength: 2, useJitter: false });
+  const generator = new IndexGenerator(orderKeys, { groupIdLength: 2, useJitter: false });
 
   const addToList = (orders: string[]) => {
     const items = orders.map((order) => ({ id: uid(), order }));

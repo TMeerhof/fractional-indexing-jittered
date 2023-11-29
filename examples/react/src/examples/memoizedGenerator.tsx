@@ -1,4 +1,4 @@
-import { Generator } from "fractional-indexing-jittered";
+import{ IndexGenerator } from "fractional-indexing-jittered";
 import { memo, useCallback, useMemo, useRef, useState } from "react";
 import { Button } from "../components/Button";
 import { SmallText } from "../components/SmallText";
@@ -29,7 +29,7 @@ export const MemoizeGenerator = () => {
   // you can use `useCallback` to memoize the generator and the callback functions
   const generator = useMemo(() => {
     const initialOrder = list.map((item) => item.order);
-    return new Generator(initialOrder);
+    return new IndexGenerator(initialOrder);
     // we don't want to re-run this effect when the list changes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

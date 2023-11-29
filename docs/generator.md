@@ -58,7 +58,7 @@ interface GeneratorOptions {
   useJitter?: boolean;
   groupIdLength?: number;
 }
-new Generator(list: string[], options: GeneratorOptions = {})
+new IndexGenerator(list: string[], options: GeneratorOptions = {})
 ```
 
 ### Class methods
