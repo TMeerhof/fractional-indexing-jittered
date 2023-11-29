@@ -1,6 +1,6 @@
 {
   "name": "fractional-indexing-jittered",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "description": "Fractional index library with jittering and generator",
   "type": "module",
   "main": "lib/cjs/index.cjs",
@@ -21,12 +21,12 @@
   "exports": {
     ".": {
       "import": {
-        "default": "./lib/esm/index.mjs",
-        "types": "./lib/esm/index.d.mts"
+        "types": "./lib/esm/index.d.mts",
+        "default": "./lib/esm/index.mjs"
       },
       "require": {
-        "default": "./lib/cjs/index.cjs",
-        "types": "./lib/cjs/index.d.cts"
+        "types": "./lib/cjs/index.d.cts",
+        "default": "./lib/cjs/index.cjs"
       }
     }
   },
