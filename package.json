@@ -1,9 +1,10 @@
 {
   "name": "fractional-indexing-jittered",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "Fractional index library with jittering and generator",
   "type": "module",
   "main": "lib/cjs/index.cjs",
+  "types": "lib/cjs/index.d.ts",
   "homepage": "https://github.com/TMeerhof/fractional-indexing-jittered",
   "repository": {
     "url": "https://github.com/TMeerhof/fractional-indexing-jittered",
