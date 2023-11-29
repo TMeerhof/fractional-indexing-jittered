@@ -1,6 +1,6 @@
 {
   "name": "fractional-indexing-jittered",
-  "version": "0.8.5",
+  "version": "0.9.0",
   "description": "Fractional index library with jittering and generator",
   "type": "module",
   "main": "lib/cjs/index.cjs",

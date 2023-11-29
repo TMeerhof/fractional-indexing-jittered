@@ -5,8 +5,8 @@ export {
   generateNJitteredKeysBetween,
 } from "./generateKeyBetween.js";
 export {
-  indexCharacterSet as indexCharacterSet,
+  indexCharacterSet,
   base62CharSet,
 } from "./charSet.js";
-export { IndexGenerator as Generator } from "./IndexGenerator.js";
+export { IndexGenerator } from "./IndexGenerator.js";
 export type { GeneratorOptions } from "./IndexGenerator.js";
