@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.88422cee.css",
-    "main.js": "/static/js/main.8601ce42.js",
-    "index.html": "/index.html",
-    "main.88422cee.css.map": "/static/css/main.88422cee.css.map",
-    "main.8601ce42.js.map": "/static/js/main.8601ce42.js.map"
+    "main.css": "/fractional-indexing-jittered/static/css/main.88422cee.css",
+    "main.js": "/fractional-indexing-jittered/static/js/main.8601ce42.js",
+    "index.html": "/fractional-indexing-jittered/index.html",
+    "main.88422cee.css.map": "/fractional-indexing-jittered/static/css/main.88422cee.css.map",
+    "main.8601ce42.js.map": "/fractional-indexing-jittered/static/js/main.8601ce42.js.map"
   },
   "entrypoints": [
     "static/css/main.88422cee.css",
