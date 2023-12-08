@@ -7,7 +7,7 @@
   "module": "./lib/index.mjs",
   "homepage": "https://github.com/TMeerhof/fractional-indexing-jittered",
   "repository": {
-    "url": "https://github.com/TMeerhof/fractional-indexing-jittered",
+    "url": "git+https://github.com/TMeerhof/fractional-indexing-jittered.git",
     "type": "git"
   },
   "scripts": {
