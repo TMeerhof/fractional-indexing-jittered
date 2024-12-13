@@ -3,10 +3,10 @@ export {
   generateNKeysBetween,
   generateJitteredKeyBetween,
   generateNJitteredKeysBetween,
-} from "./generateKeyBetween.js";
+} from "./generateKeyBetween";
 export {
   indexCharacterSet,
   base62CharSet,
-} from "./charSet.js";
-export { IndexGenerator } from "./IndexGenerator.js";
-export type { GeneratorOptions } from "./IndexGenerator.js";
+} from "./charSet";
+export { IndexGenerator } from "./IndexGenerator";
+export type { GeneratorOptions } from "./IndexGenerator";

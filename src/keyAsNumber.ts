@@ -1,5 +1,5 @@
-import { IndexedCharacterSet, base62CharSet } from "./charSet.js";
-import { makeSameLength } from "./padToSameLength.js";
+import { IndexedCharacterSet, base62CharSet } from "./charSet";
+import { makeSameLength } from "./padToSameLength";
 
 /**
  * Returns the midpoint between two string keys based on a given charSet.

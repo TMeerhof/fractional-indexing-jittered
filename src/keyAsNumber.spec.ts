@@ -1,10 +1,10 @@
-import { base62CharSet, indexCharacterSet } from "./charSet.js";
+import { base62CharSet, indexCharacterSet } from "./charSet";
 import {
   addCharSetKeys,
   lexicalDistance,
   midPoint,
   subtractCharSetKeys,
-} from "./keyAsNumber.js";
+} from "./keyAsNumber";
 
 const base10Charset = indexCharacterSet({
   chars: "0123456789",

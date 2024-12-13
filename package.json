@@ -2,7 +2,6 @@
   "name": "fractional-indexing-jittered",
   "version": "0.9.1",
   "description": "Fractional index library with jittering and generator",
-  "type": "module",
   "main": "./lib/index.js",
   "module": "./lib/index.mjs",
   "homepage": "https://github.com/TMeerhof/fractional-indexing-jittered",

@@ -1,5 +1,5 @@
-import { base62CharSet, indexCharacterSet } from "./charSet.js";
-import { distanceBetween, integerLength } from "./integerLength.js";
+import { base62CharSet, indexCharacterSet } from "./charSet";
+import { distanceBetween, integerLength } from "./integerLength";
 
 describe("distanceNeutral", () => {
   const charSet = base62CharSet();

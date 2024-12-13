@@ -1,10 +1,10 @@
-import { base62CharSet, indexCharacterSet } from "./charSet.js";
+import { base62CharSet, indexCharacterSet } from "./charSet";
 import {
   generateJitteredKeyBetween,
   generateKeyBetween,
   generateNJitteredKeysBetween,
   generateNKeysBetween,
-} from "./generateKeyBetween.js";
+} from "./generateKeyBetween";
 
 // We need to mock Math.random() to get consistent results
 // 0.5 * default Jitter range === '6CO'

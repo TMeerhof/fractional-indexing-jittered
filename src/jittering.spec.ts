@@ -1,10 +1,10 @@
-import { base62CharSet } from "./charSet.js";
+import { base62CharSet } from "./charSet";
 import {
   jitterString,
   paddingNeededForJitter,
   padAndJitterString,
   paddingNeededForDistance,
-} from "./jittering.js";
+} from "./jittering";
 
 beforeEach(() => {
   jest.spyOn(global.Math, "random").mockReturnValue(0.5);

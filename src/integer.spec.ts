@@ -6,8 +6,8 @@ import {
   incrementIntegerHead,
   decrementIntegerHead,
   decrementInteger,
-} from "./integer.js";
-import { base62CharSet, indexCharacterSet } from "./charSet.js";
+} from "./integer";
+import { base62CharSet, indexCharacterSet } from "./charSet";
 
 describe("startKey", () => {
   it("should return the first key for simple charset", () => {

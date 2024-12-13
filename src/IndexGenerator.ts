@@ -1,8 +1,8 @@
-import { IndexedCharacterSet, base62CharSet } from "./charSet.js";
+import { IndexedCharacterSet, base62CharSet } from "./charSet";
 import {
   generateNJitteredKeysBetween,
   generateNKeysBetween,
-} from "./generateKeyBetween.js";
+} from "./generateKeyBetween";
 
 export interface GeneratorOptions {
   charSet?: IndexedCharacterSet;
