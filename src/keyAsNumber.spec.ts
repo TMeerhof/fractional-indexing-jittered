@@ -32,14 +32,14 @@ describe("midPoint", () => {
 });
 
 const base62Cases: [a: string, b: string, added: string][] = [
-  ["a0", "1", "a1"],
+  ["a0", "01", "a1"],
   ["1", "a0", "a1"],
-  ["Zz", "1", "a0"],
+  ["Zz", "01", "a0"],
 ];
 
 const base10Cases: [a: string, b: string, added: string][] = [
   ["1", "5", "6"],
-  ["5", "7", "12"],
+  ["5", "07", "12"],
 ];
 
 describe("addCharSetKey", () => {

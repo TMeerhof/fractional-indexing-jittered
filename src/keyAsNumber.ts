@@ -106,7 +106,7 @@ export function subtractCharSetKeys(
   }
 
   // Remove leading zeros
-  while (result.length > 1 && result[0] === charSet.byCode[0]) {
+  while (result.length > a.length && result[0] === charSet.byCode[0]) {
     result.shift();
   }
 

@@ -23,6 +23,7 @@ describe("generateKeyBetween", () => {
     [null, "a0", null],
     [null, "a0", "a1"],
     [null, "Zz", "a0"],
+    [null, "b0S", "b0T"],
     ["a0", "a4", "a8"],
     ["a0", "a0V", "a1"],
   ])("a:%s mid: %s b:%s", (a, expected, b) => {
@@ -42,6 +43,7 @@ describe("generateJitteredKeyBetween", () => {
     [null, "a06CO", null],
     [null, "a06CO", "a1"],
     [null, "Zz6CO", "a0"],
+    [null, "b0S6CO", "b0T46n"],
     ["a0", "a46CO", "a8"],
     ["a0", "a0V6CO", "a1"],
   ])("a:%s mid: %s b:%s, should not mess up integer part", (a, expected, b) => {
