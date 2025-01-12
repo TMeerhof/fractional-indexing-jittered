@@ -1,10 +1,10 @@
-import { base62CharSet } from "./charSet.js";
+import { base62CharSet } from "./charSet";
 import {
   jitterString,
   paddingNeededForJitter,
   padAndJitterString,
   paddingNeededForDistance,
-} from "./jittering.js";
+} from "./jittering";
 
 beforeEach(() => {
   jest.spyOn(global.Math, "random").mockReturnValue(0.5);
@@ -39,6 +39,7 @@ describe("paddingNeededForJitter", () => {
   it("should return 0 for a key that has room until the next integer", () => {
     expect(paddingNeededForJitter("a000001", null, base62CharSet())).toBe(0);
   });
+
   it("should return 2 for a key that just misses a little room", () => {
     expect(paddingNeededForJitter("a01001", "a01C00", base62CharSet())).toBe(2);
   });

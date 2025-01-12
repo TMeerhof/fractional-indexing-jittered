@@ -1,17 +1,17 @@
-import { IndexedCharacterSet, base62CharSet } from "./charSet.js";
+import { IndexedCharacterSet, base62CharSet } from "./charSet";
 import {
   decrementInteger,
   getIntegerPart,
   incrementInteger,
   startKey,
   validateOrderKey,
-} from "./integer.js";
+} from "./integer";
 import {
   jitterString,
   paddingNeededForJitter,
   padAndJitterString,
-} from "./jittering.js";
-import { midPoint } from "./keyAsNumber.js";
+} from "./jittering";
+import { midPoint } from "./keyAsNumber";
 
 /**
  * Generate a key between two other keys.

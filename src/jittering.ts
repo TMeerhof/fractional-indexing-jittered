@@ -1,10 +1,10 @@
-import { IndexedCharacterSet } from "./charSet.js";
-import { getIntegerPart, incrementInteger } from "./integer.js";
+import { IndexedCharacterSet } from "./charSet";
+import { getIntegerPart, incrementInteger } from "./integer";
 import {
   addCharSetKeys,
   encodeToCharSet,
   lexicalDistance,
-} from "./keyAsNumber.js";
+} from "./keyAsNumber";
 
 export function jitterString(
   orderKey: string,
