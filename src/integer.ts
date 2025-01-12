@@ -1,6 +1,6 @@
-import { IndexedCharacterSet, IntegerLimits } from "./charSet.js";
-import { integerLength } from "./integerLength.js";
-import { decrementKey, incrementKey } from "./keyAsNumber.js";
+import { IndexedCharacterSet, IntegerLimits } from "./charSet";
+import { integerLength } from "./integerLength";
+import { decrementKey, incrementKey } from "./keyAsNumber";
 
 export function startKey(charSet: IndexedCharacterSet) {
   return charSet.firstPositive + charSet.byCode[0];

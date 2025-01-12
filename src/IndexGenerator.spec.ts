@@ -1,4 +1,4 @@
-import { IndexGenerator } from "./IndexGenerator.js"; // Adjust this import according to your project structure
+import { IndexGenerator } from "./IndexGenerator"; // Adjust this import according to your project structure
 
 describe("Basic Generator", () => {
   let generator: IndexGenerator;

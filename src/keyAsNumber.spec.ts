@@ -1,10 +1,11 @@
-import { base62CharSet, indexCharacterSet } from "./charSet.js";
+import { base62CharSet, indexCharacterSet } from "./charSet";
 import {
   addCharSetKeys,
+  decrementKey,
   lexicalDistance,
   midPoint,
   subtractCharSetKeys,
-} from "./keyAsNumber.js";
+} from "./keyAsNumber";
 
 const base10Charset = indexCharacterSet({
   chars: "0123456789",
@@ -35,6 +36,7 @@ const base62Cases: [a: string, b: string, added: string][] = [
   ["a0", "1", "a1"],
   ["1", "a0", "a1"],
   ["Zz", "1", "a0"],
+  ["0a0", "1", "0a1"],
 ];
 
 const base10Cases: [a: string, b: string, added: string][] = [
@@ -73,7 +75,20 @@ describe("lexicalDistance", () => {
     ["b1", "a1", 62],
     ["a1", "a2", 1],
     ["a10", "a20", 62],
+    ["0a10", "0a20", 62],
   ])("a: %s b: %s distance: %s", (a, b, distance) => {
     expect(lexicalDistance(a, b, charSet)).toBe(distance);
+  });
+});
+
+describe("decrementKey", () => {
+  const charSet = base62CharSet();
+  it.each([
+    ["a0", "Zz"],
+    ["Zz", "Zy"],
+    ["a1", "a0"],
+    ["b0T", "b0S"],
+  ])("a: %s b: %s distance: %s", (key, result) => {
+    expect(decrementKey(key, charSet)).toBe(result);
   });
 });

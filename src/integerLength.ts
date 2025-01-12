@@ -1,4 +1,4 @@
-import { IndexedCharacterSet } from "./charSet.js";
+import { IndexedCharacterSet } from "./charSet";
 
 export function distanceBetween(
   a: string,

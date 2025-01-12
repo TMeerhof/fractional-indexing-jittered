@@ -1,5 +1,5 @@
-import { IndexedCharacterSet, base62CharSet } from "./charSet.js";
-import { makeSameLength } from "./padToSameLength.js";
+import { IndexedCharacterSet } from "./charSet";
+import { makeSameLength } from "./padToSameLength";
 
 /**
  * Returns the midpoint between two string keys based on a given charSet.
@@ -73,7 +73,8 @@ export function addCharSetKeys(
 export function subtractCharSetKeys(
   a: string,
   b: string,
-  charSet: IndexedCharacterSet
+  charSet: IndexedCharacterSet,
+  stripLeadingZeros = true
 ): string {
   const base = charSet.length;
   const [paddedA, paddedB] = makeSameLength(a, b, "start", charSet.first);
@@ -106,7 +107,11 @@ export function subtractCharSetKeys(
   }
 
   // Remove leading zeros
-  while (result.length > 1 && result[0] === charSet.byCode[0]) {
+  while (
+    stripLeadingZeros &&
+    result.length > 1 &&
+    result[0] === charSet.first
+  ) {
     result.shift();
   }
 
@@ -118,7 +123,8 @@ export function incrementKey(key: string, charSet: IndexedCharacterSet) {
 }
 
 export function decrementKey(key: string, charSet: IndexedCharacterSet) {
-  return subtractCharSetKeys(key, charSet.byCode[1], charSet);
+  // we should not strip leading zeros here, this will break the sorting if the key already has leading zeros
+  return subtractCharSetKeys(key, charSet.byCode[1], charSet, false);
 }
 
 export function encodeToCharSet(int: number, charSet: IndexedCharacterSet) {

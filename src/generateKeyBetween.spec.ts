@@ -1,10 +1,10 @@
-import { base62CharSet, indexCharacterSet } from "./charSet.js";
+import { base62CharSet } from "./charSet";
 import {
   generateJitteredKeyBetween,
   generateKeyBetween,
   generateNJitteredKeysBetween,
   generateNKeysBetween,
-} from "./generateKeyBetween.js";
+} from "./generateKeyBetween";
 
 // We need to mock Math.random() to get consistent results
 // 0.5 * default Jitter range === '6CO'
@@ -23,6 +23,8 @@ describe("generateKeyBetween", () => {
     [null, "a0", null],
     [null, "a0", "a1"],
     [null, "Zz", "a0"],
+    [null, "b0S", "b0T"],
+    ["b0S", "b0T", null],
     ["a0", "a4", "a8"],
     ["a0", "a0V", "a1"],
   ])("a:%s mid: %s b:%s", (a, expected, b) => {
@@ -42,6 +44,8 @@ describe("generateJitteredKeyBetween", () => {
     [null, "a06CO", null],
     [null, "a06CO", "a1"],
     [null, "Zz6CO", "a0"],
+    [null, "b0S6CO", "b0T46n"],
+    ["b0S", "b0T6CO", null],
     ["a0", "a46CO", "a8"],
     ["a0", "a0V6CO", "a1"],
   ])("a:%s mid: %s b:%s, should not mess up integer part", (a, expected, b) => {

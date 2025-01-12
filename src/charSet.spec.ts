@@ -1,4 +1,4 @@
-import { createCharSetDicts, integerLimits, validateChars } from "./charSet.js";
+import { createCharSetDicts, integerLimits, validateChars } from "./charSet";
 
 describe("validateCharSet", () => {
   it("should return true for valid charSet", () => {
