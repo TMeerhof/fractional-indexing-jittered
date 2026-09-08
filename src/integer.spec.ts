@@ -6,6 +6,7 @@ import {
   incrementIntegerHead,
   decrementIntegerHead,
   decrementInteger,
+  stripTrailingZeros,
 } from "./integer";
 import { base62CharSet, indexCharacterSet } from "./charSet";
 
@@ -93,7 +94,7 @@ describe("incrementInteger", () => {
   );
 });
 
-describe("decrementIntegerHead", () => {
+describe("decrementInteger", () => {
   const charSet = base62CharSet();
   it.each(incrementTestCasesWithTail)(
     "to be %s from %s",
@@ -102,4 +103,38 @@ describe("decrementIntegerHead", () => {
       expect(decrementInteger(interPart, charSet)).toBe(expected);
     }
   );
+
+  // The digits after the head may start with the zero character. Stripping it would shorten the
+  // integer below the length its head promises, which is what versions before 1.0.0 did.
+  it.each([
+    ["Y0z", "Y0y"],
+    ["Y10", "Y0z"],
+    ["Y01", "Y00"],
+    ["Y00", "Xzzz"],
+    ["X00z", "X00y"],
+    ["b01", "b00"],
+  ])("from %s to be %s, keeping the leading zero", (interPart, expected) => {
+    expect(decrementInteger(interPart, charSet)).toBe(expected);
+  });
+});
+
+describe("stripTrailingZeros", () => {
+  const charSet = base62CharSet();
+  it.each([
+    // the integer part is fixed length, so its own zeros have to stay
+    ["a0", "a0"],
+    ["b00", "b00"],
+    ["b000", "b00"],
+    // a fraction ending in the zero character is redundant
+    ["a010", "a01"],
+    ["a0100", "a01"],
+    ["b0S0", "b0S"],
+    ["Zz0", "Zz"],
+    // nothing to strip
+    ["a01", "a01"],
+    ["a0V", "a0V"],
+    ["b0S1", "b0S1"],
+  ])("from %s to be %s", (orderKey, expected) => {
+    expect(stripTrailingZeros(orderKey, charSet)).toBe(expected);
+  });
 });

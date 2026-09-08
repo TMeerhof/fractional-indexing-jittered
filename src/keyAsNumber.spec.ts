@@ -88,7 +88,12 @@ describe("decrementKey", () => {
     ["Zz", "Zy"],
     ["a1", "a0"],
     ["b0T", "b0S"],
-  ])("a: %s b: %s distance: %s", (key, result) => {
+    // these are integer digit tails, not whole keys: a leading zero carries length information
+    // and has to survive the decrement
+    ["0z", "0y"],
+    ["01", "00"],
+    ["00z", "00y"],
+  ])("from %s to be %s", (key, result) => {
     expect(decrementKey(key, charSet)).toBe(result);
   });
 });

@@ -31,6 +31,26 @@ export function getIntegerPart(
   return orderKey.slice(0, integerPartLength);
 }
 
+/**
+ * Strip redundant trailing zero characters from the fractional part of an order key.
+ *
+ * The integer part is fixed length and may legitimately end in the zero character ("a0"), so it is
+ * never touched. A fraction that ends in the zero character is redundant: "a01" and "a010" encode
+ * the same position but compare as different strings, and no key can be generated between them.
+ * Other fractional-indexing implementations reject such keys outright, so we avoid emitting them.
+ */
+export function stripTrailingZeros(
+  orderKey: string,
+  charSet: IndexedCharacterSet
+): string {
+  const integerPartLength = getIntegerPart(orderKey, charSet).length;
+  let end = orderKey.length;
+  while (end > integerPartLength && orderKey[end - 1] === charSet.first) {
+    end = end - 1;
+  }
+  return orderKey.slice(0, end);
+}
+
 function validateInteger(integer: string, charSet: IndexedCharacterSet) {
   if (!validInteger(integer, charSet)) {
     throw new Error("invalid integer length: " + integer);

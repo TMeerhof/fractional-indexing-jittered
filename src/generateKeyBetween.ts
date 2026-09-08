@@ -4,6 +4,7 @@ import {
   getIntegerPart,
   incrementInteger,
   startKey,
+  stripTrailingZeros,
   validateOrderKey,
 } from "./integer";
 import {
@@ -21,6 +22,22 @@ export function generateKeyBetween(
   lower: string | null,
   upper: string | null,
   charSet: IndexedCharacterSet = base62CharSet()
+): string {
+  return stripRedundantZeros(keyBetween(lower, upper, charSet), lower, charSet);
+}
+
+/**
+ * The raw key between two keys, which can still carry redundant trailing zeros.
+ *
+ * The jitter path needs the raw key: jitterString adds its shift right aligned, so the magnitude
+ * of the shift depends on the length of the key it is added to, and paddingNeededForJitter sizes
+ * that padding against this key. Stripping a character here would multiply the shift by the
+ * charSet length and let it overshoot the upper bound.
+ */
+function keyBetween(
+  lower: string | null,
+  upper: string | null,
+  charSet: IndexedCharacterSet
 ): string {
   if (lower !== null) {
     validateOrderKey(lower, charSet);
@@ -43,6 +60,27 @@ export function generateKeyBetween(
     throw new Error(lower + " >= " + upper);
   }
   return midPoint(lower, upper, charSet);
+}
+
+/**
+ * Strip the redundant trailing zeros a generated key can pick up: the midpoint can land on a
+ * multiple of the charSet length ("a000" .. "a020" -> "a010"), and the random jitter shift can
+ * end on the zero character or leave the padding padAndJitterString added in place.
+ *
+ * Never at the cost of the ordering though. Stripping lowers the key, and for a degenerate range
+ * that has no room for a key at all ("a01" .. "a010") the stripped key would land on the lower
+ * bound, so there we keep the key as it was.
+ */
+function stripRedundantZeros(
+  key: string,
+  lower: string | null,
+  charSet: IndexedCharacterSet
+): string {
+  const stripped = stripTrailingZeros(key, charSet);
+  if (lower !== null && stripped <= lower) {
+    return key;
+  }
+  return stripped;
 }
 
 /**
@@ -74,12 +112,12 @@ export function generateJitteredKeyBetween(
   upper: string | null,
   charSet: IndexedCharacterSet = base62CharSet()
 ): string {
-  const key = generateKeyBetween(lower, upper, charSet);
+  const key = keyBetween(lower, upper, charSet);
   const paddingNeeded = paddingNeededForJitter(key, upper, charSet);
-  if (paddingNeeded) {
-    return padAndJitterString(key, paddingNeeded, charSet);
-  }
-  return jitterString(key, charSet);
+  const jittered = paddingNeeded
+    ? padAndJitterString(key, paddingNeeded, charSet)
+    : jitterString(key, charSet);
+  return stripRedundantZeros(jittered, lower, charSet);
 }
 
 /**

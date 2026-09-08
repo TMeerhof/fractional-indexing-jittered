@@ -4,6 +4,8 @@ import {
   generateNJitteredKeysBetween,
   generateNKeysBetween,
 } from "../generateKeyBetween";
+import { getIntegerPart } from "../integer";
+import { base62CharSet } from "../charSet";
 
 describe("brute force", () => {
   it("should generate keys lots of keys and keep them ordered", () => {
@@ -40,5 +42,25 @@ describe("brute force", () => {
     }
     expect(list.length).toBe(1003);
     expect([...list].sort()).toStrictEqual(list);
+  });
+  it("should never end a key on the zero character", () => {
+    const charSet = base62CharSet();
+    const endsOnZero = (key: string) => {
+      const fraction = key.slice(getIntegerPart(key, charSet).length);
+      return fraction.length > 0 && fraction.endsWith(charSet.first);
+    };
+
+    for (const generate of [generateKeyBetween, generateJitteredKeyBetween]) {
+      const list = [generate(null, null)];
+      // walk the list in every direction that can produce a fraction
+      for (let i = 0; i < 500; i++) {
+        list.unshift(generate(null, list[0]));
+        list.push(generate(list[list.length - 1], null));
+        const at = 1 + Math.floor(Math.random() * (list.length - 2));
+        list.splice(at, 0, generate(list[at - 1], list[at]));
+      }
+      expect(list.filter(endsOnZero)).toStrictEqual([]);
+      expect([...list].sort()).toStrictEqual(list);
+    }
   });
 });
